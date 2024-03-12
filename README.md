@@ -7,7 +7,7 @@ POST https://yourwebsite.com/emails
 
 with JSON body:
 {
-to: "myemail@example.com",
-subject: "hi",
-body: "Hello World!"
+    to: "myemail@example.com",
+    subject: "hi",
+    body: "Hello World!"
 }
