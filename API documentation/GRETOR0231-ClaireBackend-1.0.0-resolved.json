@@ -1,0 +1,67 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "home-iot-api",
+    "description": "The API for the Claire Backend project",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/GRETOR0231/ClaireBackend/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "paths": {
+    "/emails": {
+      "post": {
+        "tags": [
+          "Emails"
+        ],
+        "operationId": "register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Emails"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successfully registered device"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Emails": {
+        "type": "object",
+        "properties": {
+          "From": {
+            "type": "string",
+            "format": "email url",
+            "example": "aaa@yahoo.com"
+          },
+          "To": {
+            "type": "string",
+            "format": "email url",
+            "example": "aaa@yahoo.com"
+          },
+          "Subject": {
+            "type": "string",
+            "format": "Hello",
+            "example": "hello"
+          },
+          "Message": {
+            "type": "string",
+            "format": "Hello",
+            "example": "hello"
+          }
+        }
+      }
+    }
+  }
+}
