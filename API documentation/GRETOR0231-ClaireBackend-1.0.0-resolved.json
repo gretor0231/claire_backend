@@ -22,7 +22,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Emails"
+                "$ref": "#/components/schemas/mail"
               }
             }
           }
@@ -37,7 +37,7 @@
   },
   "components": {
     "schemas": {
-      "Emails": {
+      "mail": {
         "type": "object",
         "properties": {
           "From": {
