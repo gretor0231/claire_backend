@@ -7,9 +7,10 @@ import (
 
 func (app *Config) SendMail(w http.ResponseWriter, r *http.Request) {
 	type mailMessage struct {
+		From    string `json:"from"`
 		To      string `json:"to"`
 		Subject string `json:"subject"`
-		Body    string `json:"body"`
+		Message string `json:"message"`
 	}
 
 	var requestPayload mailMessage
@@ -22,9 +23,10 @@ func (app *Config) SendMail(w http.ResponseWriter, r *http.Request) {
 	}
 
 	msg := Message{
+		From:    requestPayload.From,
 		To:      requestPayload.To,
 		Subject: requestPayload.Subject,
-		Data:    requestPayload.Body,
+		Data:    requestPayload.Message,
 	}
 
 	err = app.Mailer.SendSMTPMessage(msg)

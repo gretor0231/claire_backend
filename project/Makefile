@@ -1,6 +1,7 @@
 FRONT_END_BINARY=frontApp
 BROKER_BINARY=brokerApp
 MAIL_BINARY=mailerApp
+
 ## up: starts all containers in the background without forcing build
 up:
 	@echo "Starting Docker images..."
@@ -27,6 +28,12 @@ build_broker:
 	cd ../broker-service && env GOOS=linux CGO_ENABLED=0 go build -o ${BROKER_BINARY} ./cmd/api
 	@echo "Done!"
 
+## build_mail: builds the mail binary as a linux executable
+build_mail:
+	@echo "Building mail binary..."
+	cd ../mail-service && env GOOS=linux CGO_ENABLED=0 go build -o ${MAIL_BINARY} ./cmd/api
+	@echo "Done!"
+
 ## build_front: builds the frone end binary
 build_front:
 	@echo "Building front end binary..."
@@ -36,7 +43,6 @@ build_front:
 ## start: starts the front end
 start: build_front
 	@echo "Starting front end"
-	cd ../front-end && go build -o ${FRONT_END_BINARY} ./cmd/web
 	cd ../front-end && ./${FRONT_END_BINARY} &
 
 ## stop: stop the front end
@@ -44,9 +50,3 @@ stop:
 	@echo "Stopping front end..."
 	@-pkill -SIGTERM -f "./${FRONT_END_BINARY}"
 	@echo "Stopped front end!"
-
-## build_mail: builds the mail binary as a linux executable
-build_mail:
-	@echo "Building mail binary..."
-	cd ../mail-service && env GOOS=linux CGO_ENABLED=0 go build -o ${MAIL_BINARY} ./cmd/api
-	@echo "Done!"
